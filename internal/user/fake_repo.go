@@ -1,6 +1,8 @@
-package internal
+package user
 
-import "time"
+import (
+	"time"
+)
 
 type FakeRepo struct {
 	users []User
@@ -8,9 +10,9 @@ type FakeRepo struct {
 
 func (r FakeRepo) CreateUser(name string) User {
 	u := User{
-		id: len(r.users),
-		createdAt: time.Now(),
-		name: name,
+		Id: len(r.users),
+		CreatedAt: time.Now(),
+		Name: name,
 	}
 
 	r.users = append(r.users, u)
