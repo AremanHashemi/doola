@@ -1,4 +1,4 @@
-package doola
+package internal
 
 import "time"
 

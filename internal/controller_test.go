@@ -1,4 +1,4 @@
-package doola
+package internal
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -10,7 +10,7 @@ func TestController_CreateUser(t *testing.T) {
 		users: []User{},
 	}
 	c := Controller{
-		repo: r,
+		Repo: r,
 	}
 
 	u := c.CreateUser("Areman")

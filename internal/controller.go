@@ -1,4 +1,4 @@
-package doola
+package internal
 
 import "time"
 
@@ -13,9 +13,9 @@ type Repository interface {
 }
 
 type Controller struct {
-	repo Repository
+	Repo Repository
 }
 
 func (c Controller) CreateUser(name string) User {
-	return c.repo.CreateUser(name)
+	return c.Repo.CreateUser(name)
 }
