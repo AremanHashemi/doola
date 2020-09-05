@@ -1,14 +1,14 @@
 package main
 
 import (
-	"doola/internal/http"
+	"doola/internal/server"
 	"doola/internal/user"
 )
 
 func main() {
 	r := user.FakeRepo{}
 	c := user.NewController(r)
-	s := http.Server{
+	s := server.Server{
 		Controller: c,
 	}
 
