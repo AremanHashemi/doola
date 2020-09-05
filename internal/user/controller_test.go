@@ -1,4 +1,4 @@
-package internal
+package user
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -6,14 +6,12 @@ import (
 )
 
 func TestController_CreateUser(t *testing.T) {
-	r := FakeRepo{
-		users: []User{},
-	}
+	r := FakeRepo{}
 	c := Controller{
-		Repo: r,
+		repo: r,
 	}
 
 	u := c.CreateUser("Areman")
 
-	assert.Equal(t, "Areman", u.name)
+	assert.Equal(t, "Areman", u.Name)
 }

@@ -1,13 +1,14 @@
-package internal
+package server
 
 import (
+	"doola/internal/user"
 	"encoding/json"
 	"log"
 	"net/http"
 )
 
 type Server struct {
-	Controller Controller
+	Controller user.Controller
 }
 
 type CreateUserRequest struct {
@@ -21,7 +22,7 @@ type CreateUserResponse struct {
 func (s Server) Start() {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/user", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case http.MethodPost:
 			s.CreateUser(w, r)
@@ -43,10 +44,10 @@ func (s Server) CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	u := s.Controller.CreateUser(req.name)
+	user := s.Controller.CreateUser(req.name)
 
 	res := CreateUserResponse{
-		id: u.id,
+		id: user.Id,
 	}
 
 	rBytes, err := json.Marshal(res)
