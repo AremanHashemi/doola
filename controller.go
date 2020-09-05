@@ -1,6 +1,10 @@
 package doola
 
+import "time"
+
 type User struct {
+	id int
+	createdAt time.Time
 	name string
 }
 
@@ -13,5 +17,5 @@ type Controller struct {
 }
 
 func (c Controller) CreateUser(name string) User {
-	return c.CreateUser(name)
+	return c.repo.CreateUser(name)
 }
