@@ -10,6 +10,7 @@ type User struct {
 
 type Repository interface {
 	CreateUser(name string) User
+	GetUser(id int) (User,error)
 }
 
 type Controller struct {
@@ -24,4 +25,8 @@ func NewController(r Repository) Controller {
 
 func (c Controller) CreateUser(name string) User {
 	return c.repo.CreateUser(name)
+}
+
+func (c Controller) GetUser(id int) (User,error) {
+	return c.repo.GetUser(id)
 }

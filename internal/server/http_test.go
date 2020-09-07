@@ -2,7 +2,7 @@ package server
 
 import (
 	"bytes"
-	"doola/internal/user"
+	"github.com/camhashemi/doola/internal/user"
 	"encoding/json"
 	"github.com/stretchr/testify/assert"
 	"net/http"
@@ -42,4 +42,17 @@ func TestServer_CreateUser(t *testing.T) {
 
 		assert.Equal(t, 0, createUserResponse.id)
 	})
+}
+
+func TestServer_GetUser(t *testing.T) {
+	r := user.FakeRepo{}
+	c := user.NewController(r)
+	s := Server{
+		Controller: c,
+	}
+
+	go s.Start()
+
+
+
 }

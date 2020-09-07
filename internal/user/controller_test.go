@@ -14,4 +14,18 @@ func TestController_CreateUser(t *testing.T) {
 	u := c.CreateUser("Areman")
 
 	assert.Equal(t, "Areman", u.Name)
+
+}
+
+func TestController_GetUser(t *testing.T) {
+	r := FakeRepo{}
+	c := NewController(r)
+	u := c.CreateUser("Areman")
+
+	a, err := c.GetUser(u.Id)
+	if err != nil{
+		assert.Fail(t,"error on getUser")
+	}
+
+	assert.Equal(t, "Areman", a.Name)
 }

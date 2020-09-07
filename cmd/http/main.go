@@ -1,8 +1,8 @@
 package main
 
 import (
-	"doola/internal/server"
-	"doola/internal/user"
+	"github.com/camhashemi/doola/internal/server"
+	"github.com/camhashemi/doola/internal/user"
 )
 
 func main() {
