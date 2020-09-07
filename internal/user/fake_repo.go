@@ -11,7 +11,7 @@ type FakeRepo struct {
 
 
 
-func (r FakeRepo) CreateUser(name string) User {
+func (r *FakeRepo) CreateUser(name string) User {
 	u := User{
 		Id:        len(r.users),
 		CreatedAt: time.Now(),
@@ -22,7 +22,7 @@ func (r FakeRepo) CreateUser(name string) User {
 	return u
 }
 
-func (r FakeRepo) GetUser(id int) (User,error) {
+func (r *FakeRepo) GetUser(id int) (User,error) {
 	for _, u := range r.users{
 		if u.Id == id{
 			return u, nil
