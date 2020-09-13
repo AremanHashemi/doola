@@ -20,20 +20,16 @@ type CreateUserResponse struct {
 	id int
 }
 
-type GetUserRequest struct{
+type GetUserRequest struct {
 	id int
 }
 
 type GetUserResponse struct {
 	Id        int
 	CreatedAt time.Time
-	Name 	  string
+	Name      string
 }
-/*
-type GetUserResponse struct{
-	user *User
-}
-*/
+
 func (s Server) Start() {
 	mux := http.NewServeMux()
 
@@ -42,7 +38,7 @@ func (s Server) Start() {
 		case http.MethodPost:
 			s.CreateUser(w, r)
 		case http.MethodGet:
-			s.GetUser(w,r)
+			s.GetUser(w, r)
 		default:
 			w.WriteHeader(http.StatusNotFound)
 		}
@@ -52,24 +48,24 @@ func (s Server) Start() {
 	log.Fatal(err)
 }
 
-func (s Server) GetUser(w http.ResponseWriter, r *http.Request){
+func (s Server) GetUser(w http.ResponseWriter, r *http.Request) {
 	var req GetUserRequest
 
 	err := json.NewDecoder(r.Body).Decode(&req)
-	if err != nil{
+	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	user, err := s.Controller.GetUser(req.id)
-	if err != nil{
+	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	res = GetUserResponse{
-		Id: user.Id,
-		Name: user.Name,
+	res := GetUserResponse{
+		Id:        user.Id,
+		Name:      user.Name,
 		CreatedAt: user.CreatedAt,
 	}
 
